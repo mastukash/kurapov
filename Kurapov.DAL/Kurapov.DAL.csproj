@@ -51,12 +51,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Context\ApplicationDbContext.cs" />
+    <Compile Include="Implementations\GenericUnitOfWork.cs" />
+    <Compile Include="Implementations\EFGenericRepository.cs" />
+    <Compile Include="Abstractions\IGenericUnitOfWork.cs" />
+    <Compile Include="Abstractions\IGenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
