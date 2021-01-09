@@ -2,7 +2,7 @@
 
 namespace Kurapov.DAL.Abstractions
 {
-    interface IGenericUnitOfWork
+    public interface IGenericUnitOfWork
     {
         void SaveChanges();
         Task SaveAsync();

@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using Kurapov.DAL.Entities;
+using System.Data.Entity;
 
 namespace Kurapov.DAL.Context
 {
@@ -19,8 +20,29 @@ namespace Kurapov.DAL.Context
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            //One to One (Body->Header)
+            //modelBuilder.Entity<Header>()
+            //    .HasRequired(c => c.Body)
+            //    .WithRequiredPrincipal(c => c.Header)
+            //    .WillCascadeOnDelete(false);
+
+            //One-to–Zero-or-One (Document -> Header)
+            modelBuilder.Entity<Header>()
+                .HasRequired(c => c.Document)
+                .WithOptional(c => c.Header)
+                .WillCascadeOnDelete(false);
+
+            //One-to–Zero-or-One (Document -> Body)
+            modelBuilder.Entity<Body>()
+                .HasRequired(c => c.Document)
+                .WithOptional(c => c.Body)
+                .WillCascadeOnDelete(false);
         }
 
-        //public DbSet<TypeChat> TypesChats { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<Header> Headers { get; set; }
+        public DbSet<Body> Bodies { get; set; }
+        public DbSet<Line> Lines { get; set; }
     }
 }
